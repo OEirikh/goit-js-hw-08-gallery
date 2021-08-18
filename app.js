@@ -78,6 +78,7 @@ refs.galery.insertAdjacentHTML('beforeend', elemGalery);
 refs.galery.addEventListener('click', onGaleryItemClick);
 refs.overlay.addEventListener('click', onOverlayClick);
 refs.btnClose.addEventListener('click', onBtnCloseClick);
+window.addEventListener('keydown', onBtnEscKeydown);
 
 function createElemGaleryMarkup(items) {
   return items
@@ -121,6 +122,15 @@ function onOverlayClick(e) {
 function onBtnCloseClick(e) {
   e.preventDefault();
   if (!e.target.classList.contains('lightbox__button')) {
+    return;
+  }
+  closelightbox();
+}
+
+function onBtnEscKeydown(e) {
+  console.log(e.key);
+  e.preventDefault();
+  if (!e.key === 'Escape') {
     return;
   }
   closelightbox();
