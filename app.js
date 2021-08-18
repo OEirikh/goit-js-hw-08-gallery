@@ -106,11 +106,8 @@ function onGaleryItemClick(e) {
     return;
   }
   refs.lightbox.classList.add('is-open');
-
-  console.dir`${e.target.dataset.source}`;
-
   refs.imgOrig.src = `${e.target.dataset.source}`;
-  // refs.imgOrig.alt = `${e.target.dataset.alt}`;
+  refs.imgOrig.alt = `${e.target.attributes.alt.value}`;
 }
 
 function onOverlayClick(e) {
@@ -132,4 +129,5 @@ function onBtnCloseClick(e) {
 function closelightbox() {
   refs.lightbox.classList.remove('is-open');
   refs.imgOrig.src = '';
+  refs.imgOrig.alt = '';
 }
