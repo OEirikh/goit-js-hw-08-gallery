@@ -70,6 +70,7 @@ const refs = {
   imgOrig: document.querySelector('.lightbox__image'),
   overlay: document.querySelector('.lightbox__overlay'),
   btnClose: document.querySelector('[data-action="close-lightbox"]'),
+  window: window,
 };
 
 const elemGalery = createElemGaleryMarkup(galleryItems);
@@ -78,7 +79,7 @@ refs.galery.insertAdjacentHTML('beforeend', elemGalery);
 refs.galery.addEventListener('click', onGaleryItemClick);
 refs.overlay.addEventListener('click', onOverlayClick);
 refs.btnClose.addEventListener('click', onBtnCloseClick);
-window.addEventListener('keydown', onBtnEscKeydown);
+refs.window.addEventListener('keydown', onBtnEscKeydown);
 
 function createElemGaleryMarkup(items) {
   return items
@@ -128,9 +129,8 @@ function onBtnCloseClick(e) {
 }
 
 function onBtnEscKeydown(e) {
-  console.log(e.key);
   e.preventDefault();
-  if (!e.key === 'Escape') {
+  if (e.code !== 'Escape') {
     return;
   }
   closelightbox();
